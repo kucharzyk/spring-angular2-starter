@@ -17,24 +17,27 @@ server:
 spring:
     aop:
         proxyTargetClass: true
-    application.name: shardis-ui
+    application.name: ui-service
     profiles.active: prod
 # EUREKA
+#  instance:
+#      hostname: localhost
+#      port: 8081
+#
 eureka:
-  instance:
-    hostname: localhost
-    port: 8081
   client:
+    registerWithEureka: true
+    fetchRegistry: true
     serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
+      defaultZone: http://discovery-service:8081/eureka/
 # ZULL
 zuul:
   routes:
-     shardis-api:
+     api-service:
           sensitiveHeaders:
           path: /api/**
           stripPrefix: false
-     shardis-auth:
+     auth-service:
           sensitiveHeaders:
           path: /auth/**
           stripPrefix: false

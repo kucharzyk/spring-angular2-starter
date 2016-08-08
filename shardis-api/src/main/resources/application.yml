@@ -15,19 +15,23 @@ server:
           - application/javascript
 # PROFILES
 spring:
-    application.name: shardis-api
+    application.name: api-service
     profiles.active: prod
 # jacksonm
     jackson.serialization:
         write_dates_as_timestamps: false
 # EUREKA
+# EUREKA
+#  instance:
+#      hostname: localhost
+#      port: 8081
+#
 eureka:
-  instance:
-      hostname: localhost
-      port: 8081
   client:
+    registerWithEureka: true
+    fetchRegistry: true
     serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
+      defaultZone: http://discovery-service:8081/eureka/
 # Disable spring basic authentication security
 security:
   basic:

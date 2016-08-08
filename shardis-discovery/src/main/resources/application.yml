@@ -4,18 +4,18 @@ server:
     error.whitelabel.enabled: false
 # PROFILES
 spring:
-    application.name: shardis-discovery
+    application.name: discovery-service
     profiles.active: prod
 # EUREKA
+#  instance:
+#      hostname: localhost
+#      port: ${port:8081}
 eureka:
-  instance:
-      hostname: localhost
-      port: ${port:8081}
   client:
     registerWithEureka: false
     fetchRegistry: false
     serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
+      defaultZone: http://discovery-service:8081/eureka/
   server:
     waitTimeInMsWhenSyncEmpty: 0
 # LOGGING

@@ -2,6 +2,11 @@
 .idea/
 *.iml
 
+### sts
+.settings
+.classpath
+.project
+
 ### maven
 shardis-common/target/
 shardis-discovery/target/

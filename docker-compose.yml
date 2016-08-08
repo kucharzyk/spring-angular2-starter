@@ -1,0 +1,36 @@
+version: '2'
+services:
+  api-service:
+    image: spring-ng2-starter/shardis-api
+    ports:
+     - 8082:8082
+    depends_on:
+     - discovery-service
+     - auth-service
+    links:
+     - discovery-service
+     - auth-service
+  discovery-service:
+    image: spring-ng2-starter/shardis-discovery
+    ports:
+     - 8081:8081
+  auth-service:
+    image: spring-ng2-starter/shardis-auth
+    ports:
+     - 8083:8083
+    depends_on:
+     - discovery-service
+    links:
+     - discovery-service
+  ui-service:
+    image: spring-ng2-starter/shardis-ui
+    ports:
+     - 8080:8080
+    depends_on:
+     - discovery-service
+     - auth-service
+     - api-service
+    links:
+     - discovery-service
+     - auth-service
+     - api-service
